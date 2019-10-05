@@ -86,7 +86,7 @@ public class Podometro {
      */
     public void registrarCaminata(int pasos, int dia, int horaInicio,
     int horaFin) {
-
+        
     }
 
     /**
@@ -97,7 +97,11 @@ public class Podometro {
      *  
      */
     public void printConfiguracion() {
-
+        System.out.println ("###############################################" + 
+                            "\n###############" + marca + "############################" + 
+                            "\n####  " + "Altura: " + altura + "         ##############" +
+                            "\n####  " + "Sexo: " + sexo + "             ##############" +
+                            "\n####  " + "Longitud de la Zancada: " + longitudZancada + "         #################");
     }
 
     /**
@@ -117,7 +121,6 @@ public class Podometro {
      */
     public String diaMayorNumeroPasos() {
         return marca;
-
     }
 
     /**
