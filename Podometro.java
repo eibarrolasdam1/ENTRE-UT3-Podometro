@@ -13,7 +13,7 @@ public class Podometro {
     private final double ZANCADA_MUJER = 0.41;
     private final int SABADO = 6;
     private final int DOMINGO = 7;
-    
+
     private String marca;
     private double altura;
     private char sexo;
@@ -39,7 +39,7 @@ public class Podometro {
         tiempo = 0;
         caminatasNoche = 0;
     }
-    
+
     /**
      * accesor para la marca
      *  
@@ -58,9 +58,19 @@ public class Podometro {
      *  
      */
     public void configurar(double queAltura, char queSexo) {
+        altura = queAltura;
+        sexo = queSexo;
 
+        double auxHombre = Math.ceil (altura * ZANCADA_HOMBRE);
+        double auxMujer = Math.floor (altura * ZANCADA_MUJER);
+        if (sexo == HOMBRE) {
+            longitudZancada = auxHombre;
+        }
+        else if (sexo == MUJER) {
+            longitudZancada = auxMujer;
+        }
     }
-    
+
     /**
      *  Recibe cuatro parámetros que supondremos correctos:
      *    pasos - el nº de pasos caminados
@@ -77,7 +87,6 @@ public class Podometro {
     public void registrarCaminata(int pasos, int dia, int horaInicio,
     int horaFin) {
 
-
     }
 
     /**
@@ -88,7 +97,6 @@ public class Podometro {
      *  
      */
     public void printConfiguracion() {
-
 
     }
 
@@ -101,9 +109,7 @@ public class Podometro {
      */
     public void printEstadísticas() {
 
-
     }
-
 
     /**
      *  Calcula y devuelve un String que representa el nombre del día
@@ -111,9 +117,9 @@ public class Podometro {
      */
     public String diaMayorNumeroPasos() {
         return marca;
-        
+
     }
-    
+
     /**
      * Restablecer los valores iniciales del podómetro
      * Todos los atributos se ponen a cero salvo el sexo
@@ -121,8 +127,13 @@ public class Podometro {
      *  
      */    
     public void reset() {
-
-
+        altura = 0;
+        sexo = MUJER;
+        longitudZancada = 0;
+        totalPasosLaborables = 0;
+        totalPasosSabado = 0;
+        totalPasosDomingo = 0;
+        tiempo = 0;
+        caminatasNoche = 0;
     }
-
 }
