@@ -17,7 +17,7 @@ public class DemoPodometro {
     public DemoPodometro() {
 
         teclado = new Scanner(System.in);
-        podometro = new Podometro("Garmin");
+        podometro = new Podometro("GARMIN");
 
     }
 
