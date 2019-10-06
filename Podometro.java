@@ -1,3 +1,4 @@
+
 /**
  * La clase modela un sencillo podómetro que registra información
  * acerca de los pasos, distancia, ..... que una persona (hombre o mujer)
@@ -113,7 +114,7 @@ public class Podometro {
             totalPasosDomingo += pasos;
         }
 
-        if (horaInicio > 2100){
+        if (horaInicio >= 2100){
             caminatasNoche++;
         }
         tiempo = horaFin - horaInicio;
@@ -151,16 +152,16 @@ public class Podometro {
         double distanciaRecorridaDomingo = totalPasosDomingo * longitudZancada;
         double distanciaRecorridaFinSemana = distanciaRecorridaSabado + distanciaRecorridaDomingo;
         System.out.println("Estadisticas del Podometro" + 
-                           "*********************************************************" + 
-                           "Distancia recorrida toda la semana:  " + distanciaRecorridaLaborable + 
-                           "Distncia recorrida fin de semana" + distanciaRecorridaFinSemana + 
+                           "\n**************************************************************************" + 
+                           "\nDistancia recorrida toda la semana:  " + distanciaRecorridaLaborable + 
+                           "\nDistncia recorrida fin de semana" + distanciaRecorridaFinSemana + 
                            "\n" +
                            "\nNº pasos laborables:  " + totalPasosLaborables +
                            "\nNº pasos Sabado:  " + totalPasosSabado +
                            "\nNº pasos Domingo:  " + totalPasosDomingo +
                            "\n" + 
                            "\nNº caminatas realizadas a partir de las 21h:  " + caminatasNoche +
-                           "\nTiempo total caminado:  " + tiempo + 
+                           "\nTiempo total caminado:  " + tiempo / 60 + " h y " + tiempo % 60 + " m" +
                            "\nDia/s con mas pasos caminados:  " + diaMayorNumeroPasos());
     }
 
@@ -169,7 +170,19 @@ public class Podometro {
      *  en el que se ha caminado más pasos - "SÁBADO"   "DOMINGO" o  "LABORABLES"
      */
     public String diaMayorNumeroPasos() {
-        return marca;
+        String dia = "";
+        if (totalPasosSabado > totalPasosLaborables && 
+            totalPasosSabado > totalPasosDomingo){
+                dia = "SABADO";
+        }
+        else if (totalPasosDomingo > totalPasosLaborables &&
+                 totalPasosDomingo > totalPasosSabado){
+                     dia = "DOMINGO";
+        }
+        else {
+            dia = "LABORABLES";
+        }       
+        return dia;
     }
 
     /**
