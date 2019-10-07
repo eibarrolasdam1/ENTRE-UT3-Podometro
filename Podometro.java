@@ -147,14 +147,14 @@ public class Podometro {
      *  
      */
     public void printEstadísticas() {
-        double distanciaRecorridaLaborable = totalPasosLaborables * longitudZancada; 
-        double distanciaRecorridaSabado = totalPasosSabado * longitudZancada;
-        double distanciaRecorridaDomingo = totalPasosDomingo * longitudZancada;
+        double distanciaRecorridaLaborable = (totalPasosLaborables * longitudZancada); 
+        double distanciaRecorridaSabado = (totalPasosSabado * longitudZancada);
+        double distanciaRecorridaDomingo = (totalPasosDomingo * longitudZancada);
         double distanciaRecorridaFinSemana = distanciaRecorridaSabado + distanciaRecorridaDomingo;
-        System.out.println("Estadisticas del Podometro" + 
+        System.out.println("\nEstadisticas del Podometro" + 
                            "\n**************************************************************************" + 
-                           "\nDistancia recorrida toda la semana:  " + distanciaRecorridaLaborable + 
-                           "\nDistncia recorrida fin de semana" + distanciaRecorridaFinSemana + 
+                           "\nDistancia recorrida toda la semana:  " + distanciaRecorridaLaborable / 10000 + " Km" +
+                           "\nDistncia recorrida fin de semana:  " + distanciaRecorridaFinSemana / 10000 + " Km" +
                            "\n" +
                            "\nNº pasos laborables:  " + totalPasosLaborables +
                            "\nNº pasos Sabado:  " + totalPasosSabado +
