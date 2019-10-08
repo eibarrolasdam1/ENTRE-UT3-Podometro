@@ -153,8 +153,8 @@ public class Podometro {
         double distanciaRecorridaLaborable = (totalPasosLaborables * longitudZancada) + (totalPasosSabado * longitudZancada) + 
                                              (totalPasosDomingo * longitudZancada); 
         double distanciaRecorridaFinSemana = distanciaRecorridaSabado + distanciaRecorridaDomingo; 
-        int auxTiempoHoras = tiempo / 60;
-        int auxTiempoMinutos = tiempo % 60;
+        int auxTiempoHoras = tiempo / 100;
+        int auxTiempoMinutos = tiempo % (auxTiempoHoras * 100);
         
         System.out.println("\nEstadisticas del Podometro" + 
                            "\n**************************************************************************" + 
