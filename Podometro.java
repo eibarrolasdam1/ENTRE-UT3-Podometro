@@ -61,13 +61,15 @@ public class Podometro {
     public void configurar(double queAltura, char queSexo) {
         altura = queAltura;
         sexo = queSexo;
-
+        String auxSexo = "";
         double auxHombre = Math.ceil (altura * ZANCADA_HOMBRE);
         double auxMujer = Math.floor (altura * ZANCADA_MUJER);
         if (sexo == HOMBRE) {
+            auxSexo = "HOMBRE";
             longitudZancada = auxHombre;
         }
         else if (sexo == MUJER) {
+            auxSexo = "MUJER";
             longitudZancada = auxMujer;
         }
     }
@@ -87,17 +89,14 @@ public class Podometro {
      */
     public void registrarCaminata(int pasos, int dia, int horaInicio,
     int horaFin) {
-        int auxTiempo = horaFin - horaInicio;
+        String nombreDelDiaDeLaSemana = "";
+        int auxTiempo = ((horaFin / 100) * 60 + horaFin % 100) - ((horaInicio / 100) * 60 + horaInicio % 100);
         switch (dia) {
-            case 1: dia = 1;
-            break;
-            case 2: dia = 2;
-            break;
-            case 3: dia = 3;
-            break;
-            case 4: dia = 4;
-            break;
-            case 5: dia = 5;
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5: nombreDelDiaDeLaSemana = "LABORABLE";
             break;
             case 6: dia = SABADO;
             break;
@@ -105,7 +104,7 @@ public class Podometro {
             break;
         }
 
-        if (dia <= 5){
+        if (nombreDelDiaDeLaSemana == "LABORABLE"){
             totalPasosLaborables += pasos;
         }
         else if (dia == 6){
@@ -153,8 +152,8 @@ public class Podometro {
         double distanciaRecorridaLaborable = (totalPasosLaborables * longitudZancada) + (totalPasosSabado * longitudZancada) + 
                                              (totalPasosDomingo * longitudZancada); 
         double distanciaRecorridaFinSemana = distanciaRecorridaSabado + distanciaRecorridaDomingo; 
-        int auxTiempoHoras = tiempo / 100;
-        int auxTiempoMinutos = tiempo % (auxTiempoHoras * 100);
+        int auxTiempoHoras = 0;
+        int auxTiempoMinutos = 0;
         
         System.out.println("\nEstadisticas del Podometro" + 
                            "\n**************************************************************************" + 
