@@ -90,7 +90,11 @@ public class Podometro {
     public void registrarCaminata(int pasos, int dia, int horaInicio,
     int horaFin) {
         String nombreDelDiaDeLaSemana = "";
-        int auxTiempo = ((horaFin / 100) * 60 + horaFin % 100) - ((horaInicio / 100) * 60 + horaInicio % 100);
+
+        int auxTiempoInicio = (horaInicio / 100) * 60 + horaInicio % 100;
+        int auxTiempoFin = (horaFin / 100) * 60 + horaFin % 100;
+
+        tiempo += auxTiempoFin - auxTiempoInicio;
         switch (dia) {
             case 1:
             case 2:
@@ -117,7 +121,7 @@ public class Podometro {
         if (horaInicio >= 2100){
             caminatasNoche++;
         }
-        tiempo += auxTiempo;
+
     }
 
     /**
@@ -132,11 +136,11 @@ public class Podometro {
         double auxLongitudZancada = longitudZancada /100;
 
         System.out.println ("Configuración del Podometro" +
-                            "\n***********************************" + 
-                            "\nMarca:  " + marca +
-                            "\nAltura:  " + auxAltura + "  mtos" +
-                            "\nSexo:  " + sexo + 
-                            "\nLongitud de Zancada:  " + auxLongitudZancada + "  mtos");
+            "\n***********************************" + 
+            "\nMarca:  " + marca +
+            "\nAltura:  " + auxAltura + "  mtos" +
+            "\nSexo:  " + sexo + 
+            "\nLongitud de Zancada:  " + auxLongitudZancada + "  mtos");
     }
 
     /**
@@ -150,22 +154,23 @@ public class Podometro {
         double distanciaRecorridaSabado = (totalPasosSabado * longitudZancada);
         double distanciaRecorridaDomingo = (totalPasosDomingo * longitudZancada);
         double distanciaRecorridaLaborable = (totalPasosLaborables * longitudZancada) + (totalPasosSabado * longitudZancada) + 
-                                             (totalPasosDomingo * longitudZancada); 
+            (totalPasosDomingo * longitudZancada); 
         double distanciaRecorridaFinSemana = distanciaRecorridaSabado + distanciaRecorridaDomingo; 
-        int auxTiempoHoras = 0;
-        int auxTiempoMinutos = 0;
-        
+
+        int auxHoras = tiempo / 60;
+        int auxMinutos = tiempo % 60;
+
         System.out.println("\nEstadisticas del Podometro" + 
-                           "\n**************************************************************************" + 
-                           "\nDistancia recorrida toda la semana:  " + distanciaRecorridaLaborable / 100000 + " Km" +
-                           "\nDistncia recorrida fin de semana:  " + distanciaRecorridaFinSemana / 100000 + " Km" +
-                           "\n" +
-                           "\nNº pasos laborables:  " + totalPasosLaborables +
-                           "\nNº pasos Sabado:  " + totalPasosSabado +
-                           "\nNº pasos Domingo:  " + totalPasosDomingo +
-                           "\n" + 
-                           "\nNº caminatas realizadas a partir de las 21h:  " + caminatasNoche +
-                           "\nTiempo total caminado:  " + auxTiempoHoras + " h y " + auxTiempoMinutos + " m");
+            "\n**************************************************************************" + 
+            "\nDistancia recorrida toda la semana:  " + distanciaRecorridaLaborable / 100000 + " Km" +
+            "\nDistncia recorrida fin de semana:  " + distanciaRecorridaFinSemana / 100000 + " Km" +
+            "\n" +
+            "\nNº pasos laborables:  " + totalPasosLaborables +
+            "\nNº pasos Sabado:  " + totalPasosSabado +
+            "\nNº pasos Domingo:  " + totalPasosDomingo +
+            "\n" + 
+            "\nNº caminatas realizadas a partir de las 21h:  " + caminatasNoche +
+            "\nTiempo total caminado:  " + auxHoras + " h y " + auxMinutos + " m");
     }
 
     /**
@@ -175,12 +180,12 @@ public class Podometro {
     public String diaMayorNumeroPasos() {
         String dia = "";
         if (totalPasosSabado > totalPasosLaborables && 
-            totalPasosSabado > totalPasosDomingo){
-                dia = "SABADO";
+        totalPasosSabado > totalPasosDomingo){
+            dia = "SABADO";
         }
         else if (totalPasosDomingo > totalPasosLaborables &&
-                 totalPasosDomingo > totalPasosSabado){
-                     dia = "DOMINGO";
+        totalPasosDomingo > totalPasosSabado){
+            dia = "DOMINGO";
         }
         else {
             dia = "LABORABLES";
